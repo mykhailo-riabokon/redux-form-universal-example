@@ -14,10 +14,11 @@ class App extends Component {
   render() {
     return (
       <div className="simple-form-container">
-        <p>Simple form example</p>
+        <h3>Simple form example</h3>
         <SimpleForm />
-        <p>*Try to fill SimpleForm as name and submit</p>
-        <p>*Open the console to see the result</p>
+        <p>This example shows the simple form validation with enabled and disabled javascript.</p>
+        <p>You can try to fill and submit the form. Result you can se in console</p>
+        <p>*SimpleForm is the value which would not be valid, some kind of server validation</p>
       </div>
     );
   }

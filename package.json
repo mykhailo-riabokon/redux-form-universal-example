@@ -4,7 +4,8 @@
   "description": "Universal(isomorphic) example of redux-form validation",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build-client && node --harmony ./index.js",
+    "start": "npm run build-client && npm run serve",
+    "serve": "node --harmony ./index.js",
     "build-client": "webpack",
     "test": "test"
   },

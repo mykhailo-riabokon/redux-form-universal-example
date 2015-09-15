@@ -22,24 +22,25 @@ class SimpleForm extends Component {
     router: PropTypes.object.isRequired
   };
   static validateForm(store, req) {
-    //let data = {};
-    //let result = Promise.resolve(true);
-    //
-    //if (req.method === 'POST') {
-    //  data = req.body || data;
-    //
-    //   validate form on the server
-      //result = validateSignUpFormAsync(data).then((response) => {
-      //  if (!response.valid) {
-      //    store.dispatch(stopSubmit('simpleForm', response));
-      //  }
-      //});
-    //}
+    let data = {};
+    let result = Promise.resolve(true);
 
-    // init form
-    //store.dispatch(initialize('simpleForm', data));
+    if (req.method === 'POST') {
+      data = req.body || data;
 
-    //return result;
+      // validate form on the server
+      result = validateSignUpFormAsync(data).then((response) => {
+        if (!response.valid) {
+          store.dispatch(stopSubmit('simpleForm', response));
+        } else {
+          console.log('Form is valid, do something else');
+        }
+      });
+    }
+    //init form
+    store.dispatch(initialize('simpleForm', data));
+
+    return result;
   }
   submitForm(validFormData) {
     // you can save data here
