@@ -3,4 +3,8 @@
 ### Problem
 The main problem is to validate the same form with enabled and disabled javascript in browser.
 
-### One of the solutions you can reach in this repository.
+### How to try
+ - Clone repository
+ - Go to cloned project
+ - ``` npm install ```
+ - ``` npm run start ```
