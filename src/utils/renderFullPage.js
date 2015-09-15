@@ -7,6 +7,25 @@ export default function (reactEl) {
     <html>
       <head>
         <title>Redux-form universal example</title>
+        <style>
+           .simple-form-container {
+              width: 400px;
+              height: 300px;
+              margin: 50px auto;
+           }
+           .form__group {
+              margin-bottom: 10px;
+           }
+           .form__group > * {
+              display: inline-block;
+           }
+           .form__group__label {
+              padding-right: 10px;
+           }
+           .form__group__label .text {
+              margin-right: 10px;
+           }
+         </style>
       </head>
       <body>
         <div id="app">${reactEl}</div>
