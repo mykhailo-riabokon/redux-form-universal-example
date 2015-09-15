@@ -1,0 +1,40 @@
+{
+  "name": "redux-form-universal-example",
+  "version": "0.0.1",
+  "description": "Universal(isomorphic) example of redux-form validation",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --harmony ./index.js",
+    "build-client": "webpack",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikhail-riabokon/redux-form-universal-example.git"
+  },
+  "keywords": [
+    "redux-form",
+    "isomorphic",
+    "form-validation"
+  ],
+  "author": "Mikhail Riabokon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mikhail-riabokon/redux-form-universal-example/issues"
+  },
+  "homepage": "https://github.com/mikhail-riabokon/redux-form-universal-example#readme",
+  "dependencies": {
+    "babel": "^5.8.23",
+    "babel-core": "^5.8.24",
+    "babel-loader": "^5.3.2",
+    "express": "^4.13.3",
+    "promise": "^7.0.4",
+    "react": "^0.13.3",
+    "react-redux": "^2.1.2",
+    "react-router": "^1.0.0-beta3",
+    "redux": "^3.0.0",
+    "redux-form": "^1.5.3",
+    "webpack": "^1.12.1",
+    "webpack-dev-server": "^1.11.0"
+  }
+}
