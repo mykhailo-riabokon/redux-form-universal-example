@@ -41,8 +41,10 @@ class SimpleForm extends Component {
 
     //return result;
   }
-  submitForm(/* valid-form-data */) {
+  submitForm(validFormData) {
+    // you can save data here
 
+    console.log('Valid form data -->', JSON.stringify(validFormData, null, 4));
   }
   showError(field) {
     return (__SERVER__) ? !!field.error : field.touched && field.error;
@@ -53,8 +55,7 @@ class SimpleForm extends Component {
         name,
         email
         },
-      handleSubmit,
-      valid
+      handleSubmit
     } = this.props;
 
     return (

@@ -5,7 +5,7 @@ import Promise from 'promise';
 import superagent from 'superagent';
 
 export function validateSignUpFormAsync(data) {
-  let url = '/api/signup';
+  let url = '/api/simpleForm';
 
   if (__SERVER__) {
     url = `http://localhost:3000${url}`;

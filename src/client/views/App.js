@@ -16,6 +16,8 @@ class App extends Component {
       <div className="simple-form-container">
         <p>Simple form example</p>
         <SimpleForm />
+        <p>*Try to fill SimpleForm as name and submit</p>
+        <p>*Open the console to see the result</p>
       </div>
     );
   }
