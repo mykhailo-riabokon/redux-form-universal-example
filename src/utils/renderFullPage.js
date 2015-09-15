@@ -10,7 +10,7 @@ export default function (reactEl) {
       </head>
       <body>
         <div id="app">${reactEl}</div>
-        <script src="http://localhost:3000/assets/app.js"></script>
+        <script src="http://localhost:3000/assets/scripts/app.js"></script>
       </body>
     </html>
   `;

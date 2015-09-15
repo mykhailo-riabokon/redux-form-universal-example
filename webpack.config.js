@@ -24,7 +24,8 @@ module.exports = {
         loaders: ['babel'],
         exclude: /node_modules/,
         include: [
-          path.resolve(__dirname, 'src', 'client')
+          path.resolve(__dirname, 'src', 'client'),
+          path.resolve(__dirname, 'src', 'utils')
         ]
       }
     ]
