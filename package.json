@@ -33,11 +33,10 @@
     "promise": "^7.0.4",
     "react": "^0.13.3",
     "react-redux": "^2.1.2",
-    "react-router": "^1.0.0-beta3",
+    "react-router": "1.0.0-beta3",
     "redux": "^3.0.0",
     "redux-form": "^1.5.3",
     "superagent": "^1.4.0",
-    "webpack": "^1.12.1",
-    "webpack-dev-server": "^1.11.0"
+    "webpack": "^1.12.1"
   }
 }
