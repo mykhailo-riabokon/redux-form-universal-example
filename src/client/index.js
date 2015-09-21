@@ -2,17 +2,16 @@
  * Created by mikhail on 15.09.15.
  */
 import React from 'react';
-import BrowserHistory from 'react-router/lib/BrowserHistory';
-import Location from 'react-router/lib/Location';
 import router from './routing/router.js';
-import store from './store.js';
+import createLocation from 'history/lib/createLocation';
+import createBrowserHistory from 'history/lib/createBrowserHistory';
 
-const history = new BrowserHistory();
-const location = new Location(document.location.pathname, document.location.search);
+const history = createBrowserHistory();
+const location = createLocation(document.location.pathname, document.location.search);
 
 const dist = document.getElementById('app');
 
-router(store, location, history)
+router(location, history)
   .then((reactEl) => {
     React.render(reactEl, dist);
   }, (err) => {

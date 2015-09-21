@@ -18,9 +18,6 @@ class SimpleForm extends Component {
     handleSubmit: PropTypes.func,
     valid: PropTypes.bool
   };
-  static contextTypes = {
-    router: PropTypes.object.isRequired
-  };
   static validateForm(store, req) {
     let data = {};
     let result = Promise.resolve(true);
@@ -44,7 +41,6 @@ class SimpleForm extends Component {
   }
   submitForm(validFormData) {
     // you can save data here
-
     console.log('Valid form data -->', JSON.stringify(validFormData, null, 4));
   }
   showError(field) {

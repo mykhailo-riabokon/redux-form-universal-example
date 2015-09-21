@@ -4,29 +4,47 @@
 import React from 'react';
 import Promise from 'promise';
 import {Provider} from 'react-redux';
-import Router from 'react-router';
+import Router, {RoutingContext} from 'react-router';
 import routes from './routes.js';
+import {match} from 'react-router';
 import validateFormTransitionHook from './hooks/validateFormTransitionHook.js';
+import store from '../../client/store.js';
 
-export default function (store, location, history, req) {
+function getInitialComponent(renderedProps) {
+  let component = null;
+
+  if (__SERVER__) {
+    component = (<RoutingContext {...renderedProps}/>);
+  } else {
+    component = React.createElement(Router, renderedProps);
+  }
+
+  return component;
+}
+
+export default function (location, history, req, res) {
   return new Promise((fullfill, reject) => {
-    Router.run(routes, location, [
-      validateFormTransitionHook(store, req)
-    ], (err, initialState) => {
-      if (err) {
+    match({location, history, routes}, (err, redirectInfo, renderedProps) => {
+      if (!err) {
+        if (renderedProps) {
+          renderedProps.history = history;
+        }
+
+        Promise.all([
+          validateFormTransitionHook(renderedProps, req)
+        ])
+          .then(() => {
+            fullfill(
+              <Provider store={store}>
+                {() => getInitialComponent(renderedProps)}
+              </Provider>
+            );
+          }, (...args) => {
+            reject(...args)
+          })
+      } else {
         reject(err);
       }
-
-      // only on client side
-      if (history) {
-        initialState.history = history;
-      }
-
-      fullfill(
-        <Provider store={store}>
-        {() => <Router {...initialState} children={routes}/>}
-        </Provider>
-      );
     });
   });
 }

@@ -15,11 +15,18 @@ export function validateSignUpFormAsync(data) {
     superagent.post(url)
       .send(data)
       .end((err, response) => {
+        let defaultValidResult = {};
+
         if (err) {
           reject(err);
         }
 
-        let result = response.body.errors || {valid: true};
+        if (__SERVER__) {
+          defaultValidResult = {valid: true};
+        }
+
+
+        let result = response.body.errors || defaultValidResult;
 
         fullfill(result);
       });

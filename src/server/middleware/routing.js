@@ -3,27 +3,23 @@
  */
 import React from 'react';
 import Router from 'react-router';
-import Location from 'react-router/lib/Location';
 import Promise from 'promise';
-
 import routes from '../../client/routing/routes.js';
 import renderFullPage from '../../utils/renderFullPage.js';
 import router from '../../client/routing/router.js';
+import createLocation from 'history/lib/createLocation';
+import createMemoryHistory from 'history/lib/createMemoryHistory';
 
-import store from '../../client/store.js';
+const history = createMemoryHistory();
 
 export default function routing(req, res) {
-  let state = {
-    method: req.method,
-    store: store
-  };
-  let location = new Location(req.path, req.query, state);
+  let location = createLocation(req.path);
 
-  router(store, location, null, req, res)
+  router(location, history, req, res)
     .then((reactEl) => {
       try {
         let reactStr = React.renderToString(reactEl);
-        res.send(renderFullPage(reactStr, store.getState()));
+        res.send(renderFullPage(reactStr));
       } catch (err) {
         res.status(500).send({error: err.toString()});
       }

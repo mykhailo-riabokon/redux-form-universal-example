@@ -3,27 +3,21 @@
  */
 import Promise from 'promise';
 import findComponentMethod from '../../../utils/findComponentMethod.js';
+import store from '../../store.js';
 
 function getValidatedComponents(component) {
   return findComponentMethod(component, 'validateForm');
 }
 
-export default function validateFormTransitionHook(store, req) {
-  return (nextState, router, callback) => {
-    if (req) {
-      Promise.all(nextState.branch.map(route => route.component)
-        .filter(component => getValidatedComponents(component))
-        .map(getValidatedComponents)
-        .map(validateForm => {
-          return validateForm(store, req);
-        }))
-        .then(() => {
-          callback();
-        }, (error) => {
-          callback(error);
-        });
-    } else {
-      callback();
-    }
-  };
+export default function validateFormTransitionHook(renderProps, req) {
+  let result = Promise.resolve();
+
+  if (req) {
+    result = Promise.all(renderProps.components
+      .filter(component => getValidatedComponents(component))
+      .map(getValidatedComponents)
+      .map(validateForm => validateForm(store, req)));
+  }
+
+  return result;
 }
