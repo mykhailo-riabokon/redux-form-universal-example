@@ -28,20 +28,25 @@ export default function (location, history, req, res) {
       if (!err) {
         if (renderedProps) {
           renderedProps.history = history;
-        }
 
-        Promise.all([
-          validateFormTransitionHook(renderedProps, req)
-        ])
-          .then(() => {
-            fullfill(
-              <Provider store={store}>
-                {() => getInitialComponent(renderedProps)}
-              </Provider>
-            );
-          }, (...args) => {
-            reject(...args)
-          })
+          Promise.all([
+            validateFormTransitionHook(renderedProps, req)
+          ])
+            .then(() => {
+              fullfill(
+                <Provider store={store}>
+                  {() => getInitialComponent(renderedProps)}
+                </Provider>
+              );
+            }, (...args) => {
+              reject(...args)
+            })
+        } else {
+          reject({
+            message: 'Not found',
+            code: 404
+          });
+        }
       } else {
         reject(err);
       }

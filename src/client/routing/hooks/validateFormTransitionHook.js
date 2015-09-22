@@ -12,7 +12,7 @@ function getValidatedComponents(component) {
 export default function validateFormTransitionHook(renderProps, req) {
   let result = Promise.resolve();
 
-  if (req) {
+  if (req && renderProps) {
     result = Promise.all(renderProps.components
       .filter(component => getValidatedComponents(component))
       .map(getValidatedComponents)

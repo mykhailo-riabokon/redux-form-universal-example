@@ -23,9 +23,8 @@ export default function routing(req, res) {
       } catch (err) {
         res.status(500).send({error: err.toString()});
       }
-    }, (err) => {
-      console.log('err', err);
-
-      res.status(500).send({error: err});
+    }, ({message, code}) => {
+      console.error(message, code);
+      res.sendStatus(code || 500);
     });
 }
